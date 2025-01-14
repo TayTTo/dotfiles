@@ -24,12 +24,12 @@ let g:netrw_keepdir = 0
 let g:netrw_winsize = 20
 
 " setting for moving lines
-nnoremap <c-j> :m .+1<cr>==
-nnoremap <c-k> :m .-2<cr>==
-inoremap <c-j> <esc>:m .+1<cr>==gi
-inoremap <c-k> <esc>:m .-2<cr>==gi
-vnoremap <c-j> :m '>+1<cr>gv=gv
-vnoremap <c-k> :m '<-2<cr>gv=gv
+nnoremap <a-n> :m .+1<cr>==
+nnoremap <a-p> :m .-2<cr>==
+inoremap <a-n> <esc>:m .+1<cr>==gi
+inoremap <a-p> <esc>:m .-2<cr>==gi
+vnoremap <a-n> :m '>+1<cr>gv=gv
+vnoremap <a-p> :m '<-2<cr>gv=gv
 
 set cursorline
 set autoindent

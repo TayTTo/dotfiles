@@ -279,3 +279,6 @@ if [ -d "$FNM_PATH" ]; then
 fi
 export SUDO_EDITOR=nvim
 eval "$(zoxide init zsh)"
+
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"

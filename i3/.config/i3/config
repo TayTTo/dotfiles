@@ -46,7 +46,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym $mod+m exec rofi -show drun
+bindsym $mod+m exec --no-startup-id rofi -combi-modi window#drun#ssh -show drun -font "JetBrainsMono Nerd Font 20"
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -55,7 +55,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
