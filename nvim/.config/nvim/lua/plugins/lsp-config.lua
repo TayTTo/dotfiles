@@ -27,9 +27,9 @@ return {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
 				},
-				--completion = {
-				--	autocomplete = false
-				--},
+				completion = {
+					autocomplete = false
+				},
 				mapping = cmp.mapping.preset.insert({
 					['<C-Space>'] = cmp.mapping.complete(),
 					['<C-n>'] = cmp.mapping.select_next_item(),

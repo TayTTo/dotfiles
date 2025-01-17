@@ -272,13 +272,17 @@ fi
 export PATH="$PATH:/opt/nvim"
 
 # fnm
-FNM_PATH="/home/tayto/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/tayto/.local/share/fnm:$PATH"
+  export PATH="$HOME/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
-export SUDO_EDITOR=nvim
+export SUDO_EDITOR='nvim'
+export EDITOR='nvim'
 eval "$(zoxide init zsh)"
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
+export PATH="$HOME/.local/bin:$PATH"
+
+

@@ -5,7 +5,7 @@ config.color_scheme = 'Everforest Light Medium (Gogh)'
 
 
 config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
-config.font_size = 12
+config.font_size = 11
 --config.line_height = 1.1
 config.force_reverse_video_cursor = true
 config.enable_tab_bar = false
@@ -17,4 +17,5 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+config.max_fps = 120
 return config
