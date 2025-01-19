@@ -50,13 +50,13 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 
-  # output DP-1 {
-  #     mode 2560x1440@164.835Hz 
-  #     scale 1.25
-  # }
-   output eDP-1 {
-	   scale 2
+   output DP-1 {
+       mode 2560x1440@164.835Hz 
+       scale 1.25
    }
+  # output eDP-1 {
+  #     scale 2
+  # }
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -105,8 +105,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Start your launcher
 
-	#bindsym $mod+m exec --no-startup-id wofi -combi-modi window#drun#ssh -show drun -font "JetBrainsMono Nerd Font 20"
-	bindsym $mod+m exec wofi --show run
+	bindsym $mod+m exec --no-startup-id rofi -combi-modi window#drun#ssh -show drun -font "JetBrainsMono Nerd Font 20"
+#	bindsym $mod+m exec wofi --show run
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.

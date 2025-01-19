@@ -12,7 +12,6 @@ config.font_size = 11
 config.force_reverse_video_cursor = true
 config.enable_tab_bar = false
 
---config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 0,
 	right = 0,
