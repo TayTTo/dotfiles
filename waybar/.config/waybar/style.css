@@ -1,0 +1,97 @@
+* {
+    font-family: "JetBrains Mono", sans-serif; /* Use your preferred font */
+    font-size: 13px;
+    color: #2e2e2e; /* Dark grey for text and icons */
+}
+
+window#waybar {
+    background-color: #f4f4f7; /* Light background */
+    border-bottom: 2px solid #e0e0e0; /* Subtle bottom border */
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+}
+
+button {
+    border: none;
+    background: transparent;
+    color: #2e2e2e;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.05); /* Light hover effect */
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+}
+
+#workspaces button.focused {
+    background: #d3d3d3; /* Light gray for the selected workspace */
+    color: #2e2e2e;
+    transition: background 0.3s ease; /* Smooth transition for focus change */
+}
+
+#workspaces button.urgent {
+    background: #ff6f61; /* Subtle red for urgent workspaces */
+    color: #2e2e2e;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    background: transparent;
+    color: #2e2e2e;
+}
+
+#battery.charging, #battery.plugged {
+    background: #66bb6a; /* Green for charging battery */
+    color: #ffffff;
+}
+
+#battery.critical:not(.charging) {
+    background: #e57373; /* Light red for critical battery */
+    color: #ffffff;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        background: #ffffff;
+        color: #e57373;
+    }
+}
+
+#network.disconnected {
+    background: #e57373; /* Light red for disconnected network */
+}
+
+#pulseaudio.muted {
+    background: rgba(0, 0, 0, 0.1); /* Subtle grey for muted audio */
+}
+
+#tray > .passive {
+    opacity: 0.6;
+}
+
+#tray > .needs-attention {
+    background: #ff6f61; /* Attention highlight */
+}
+
+#scratchpad.empty {
+    background: transparent;
+}
+
+/* Resize effect for workspaces */
+
+

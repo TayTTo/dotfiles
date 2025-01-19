@@ -284,5 +284,6 @@ eval "$(zoxide init zsh)"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:~/Downloads/zig
 
 
