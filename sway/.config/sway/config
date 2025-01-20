@@ -20,7 +20,7 @@ set $up k
 set $right l
 
 
-font pango:JetBrainsMono Nerd Font 12
+font pango:JetBrainsMono Nerd Font 10
 
 #exec --no-startup-id lxappearance --no-windows
 exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
