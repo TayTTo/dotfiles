@@ -18,5 +18,5 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-config.max_fps = 120
+config.max_fps = 240
 return config

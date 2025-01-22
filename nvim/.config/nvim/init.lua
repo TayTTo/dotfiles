@@ -49,6 +49,3 @@ inoremap <c-q> <Esc>:Lex<cr>
 nnoremap <c-q> :Lex<cr>
 set scrolloff=5
 ]])
-vim.api.nvim_create_user_command("Ans", function()
-	vim.bo.filetype = "yaml.ansible"
-end, {})

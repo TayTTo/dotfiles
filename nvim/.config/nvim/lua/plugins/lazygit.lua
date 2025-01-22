@@ -20,6 +20,7 @@ return {
         { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
     },
 	config = function()
+		vim.cmd("autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()")
         require("telescope").load_extension("lazygit")
     end,
 }

@@ -141,7 +141,19 @@ return {
 					end
 				end,
 			})
+			local function detect_ansible_config()
+				local root_path = vim.fn.findfile('ansible.cfg', '.;')
+				if root_path ~= '' then
+					vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
+						pattern = "*.yml",
+						callback = function()
+							vim.bo.filetype = "yaml.ansible"
+						end,
+					})
+				end
+			end
 
+			detect_ansible_config()
 			require('mason-lspconfig').setup({
 				ensure_installed = {},
 				handlers = {
