@@ -5,70 +5,70 @@ return {
 		opts = {},
 	},
 
-	-- Autocompletion
-	{
-		'hrsh7th/nvim-cmp',
-		event = 'InsertEnter',
-		config = function()
-			local cmp = require('cmp')
-			require('luasnip.loaders.from_vscode').lazy_load()
+	--Autocompletion
+	--{
+	--	'hrsh7th/nvim-cmp',
+	--	event = 'InsertEnter',
+	--	config = function()
+	--		local cmp = require('cmp')
+	--		require('luasnip.loaders.from_vscode').lazy_load()
 
-			cmp.setup({
-				sources = {
-					{ name = 'nvim_lsp' },
-					{ name = 'luasnip' },
-				},
-				snippet = {
-					expand = function(args)
-						require('luasnip').lsp_expand(args.body)
-					end,
-				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-				completion = {
-					autocomplete = false
-				},
-				mapping = cmp.mapping.preset.insert({
-					['<C-Space>'] = cmp.mapping.complete(),
-					['<C-n>'] = cmp.mapping.select_next_item(),
-					['<C-p>'] = cmp.mapping.select_prev_item(),
-					['<C-u>'] = cmp.mapping.scroll_docs(-4),
-					['<C-d>'] = cmp.mapping.scroll_docs(4),
-					-- Super tab
-					['<Tab>'] = cmp.mapping(function(fallback)
-						local luasnip = require('luasnip')
-						local col = vim.fn.col('.') - 1
+	--		cmp.setup({
+	--			sources = {
+	--				{ name = 'nvim_lsp' },
+	--				{ name = 'luasnip' },
+	--			},
+	--			snippet = {
+	--				expand = function(args)
+	--					require('luasnip').lsp_expand(args.body)
+	--				end,
+	--			},
+	--			window = {
+	--				completion = cmp.config.window.bordered(),
+	--				documentation = cmp.config.window.bordered(),
+	--			},
+	--			completion = {
+	--				autocomplete = false
+	--			},
+	--			mapping = cmp.mapping.preset.insert({
+	--				['<C-Space>'] = cmp.mapping.complete(),
+	--				['<C-n>'] = cmp.mapping.select_next_item(),
+	--				['<C-p>'] = cmp.mapping.select_prev_item(),
+	--				['<C-u>'] = cmp.mapping.scroll_docs(-4),
+	--				['<C-d>'] = cmp.mapping.scroll_docs(4),
+	--				-- Super tab
+	--				['<Tab>'] = cmp.mapping(function(fallback)
+	--					local luasnip = require('luasnip')
+	--					local col = vim.fn.col('.') - 1
 
-						if cmp.visible() then
-							cmp.select_next_item({ behavior = 'select' })
-						elseif luasnip.expand_or_locally_jumpable() then
-							luasnip.expand_or_jump()
-						elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-							fallback()
-						else
-							cmp.complete()
-						end
-					end, { 'i', 's' }),
+	--					if cmp.visible() then
+	--						cmp.select_next_item({ behavior = 'select' })
+	--					elseif luasnip.expand_or_locally_jumpable() then
+	--						luasnip.expand_or_jump()
+	--					elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+	--						fallback()
+	--					else
+	--						cmp.complete()
+	--					end
+	--				end, { 'i', 's' }),
 
-					-- Super shift tab
-					['<S-Tab>'] = cmp.mapping(function(fallback)
-						local luasnip = require('luasnip')
+	--				-- Super shift tab
+	--				['<S-Tab>'] = cmp.mapping(function(fallback)
+	--					local luasnip = require('luasnip')
 
-						if cmp.visible() then
-							cmp.select_prev_item({ behavior = 'select' })
-						elseif luasnip.locally_jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, { 'i', 's' }),
-					['<CR>'] = cmp.mapping.confirm({ select = false }),
-				}),
-			})
-		end
-	},
+	--					if cmp.visible() then
+	--						cmp.select_prev_item({ behavior = 'select' })
+	--					elseif luasnip.locally_jumpable(-1) then
+	--						luasnip.jump(-1)
+	--					else
+	--						fallback()
+	--					end
+	--				end, { 'i', 's' }),
+	--				['<CR>'] = cmp.mapping.confirm({ select = false }),
+	--			}),
+	--		})
+	--	end
+	--},
 
 	-- LSP
 	{
@@ -76,9 +76,10 @@ return {
 		cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
 		event = { 'BufReadPre', 'BufNewFile' },
 		dependencies = {
-			{ 'hrsh7th/cmp-nvim-lsp' },
+			--{ 'hrsh7th/cmp-nvim-lsp' },
 			{ 'williamboman/mason.nvim' },
 			{ 'williamboman/mason-lspconfig.nvim' },
+			{ 'saghen/blink.cmp' },
 		},
 		init = function()
 			-- Reserve a space in the gutter
@@ -88,14 +89,16 @@ return {
 		end,
 		config = function()
 			local lsp_defaults = require('lspconfig').util.default_config
+			local capabilities = require('blink-cmp').get_lsp_capabilities()
+			require("lspconfig").lua_ls.setup { capabilities = capabilities }
 
 			-- Add cmp_nvim_lsp capabilities settings to lspconfig
 			-- This should be executed before you configure any language server
-			lsp_defaults.capabilities = vim.tbl_deep_extend(
-				'force',
-				lsp_defaults.capabilities,
-				require('cmp_nvim_lsp').default_capabilities()
-			)
+			--lsp_defaults.capabilities = vim.tbl_deep_extend(
+			--	'force',
+			--	lsp_defaults.capabilities,
+			--	require('cmp_nvim_lsp').default_capabilities()
+			--)
 
 			-- LspAttach is where you enable features that only work
 			-- if there is a language server active in the file
@@ -141,21 +144,18 @@ return {
 					end
 				end,
 			})
-			local function detect_ansible_config()
-				local root_path = vim.fn.findfile('ansible.cfg', '.;')
-				if root_path ~= '' then
-					vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
-						pattern = "*.yml",
-						callback = function()
-							vim.bo.filetype = "yaml.ansible"
-						end,
-					})
-				end
-			end
-
-			detect_ansible_config()
 			require('mason-lspconfig').setup({
-				ensure_installed = {},
+				ensure_installed = {
+					'lua-language-server ',
+					'ansible-language-server',
+					'clangd',
+					'gopls',
+					'json-lsp jsonls',
+					'marksman',
+					'python-lsp-server',
+					'terraform-ls',
+					'tflint',
+				},
 				handlers = {
 					-- this first function is the "default handler"
 					-- it applies to every language server without a "custom handler"
