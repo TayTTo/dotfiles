@@ -13,7 +13,20 @@ return {
 		vim.wo.foldnestmax = 4
 
 		configs.setup({
-			ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+			ensure_installed = { 
+				"c",
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+				"elixir",
+				"heex",
+				"javascript",
+				"html",
+				"typescript",
+				"go",
+				"tsx"
+			},
 			sync_install = false,
 			auto_install = true,
 			highlight = {
@@ -27,7 +40,7 @@ return {
 				end,
 				additional_vim_regex_highlighting = false,
 			},
-			indent = { enable = false },
+			indent = { enable = true },
 		})
 	end
 }

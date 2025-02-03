@@ -232,8 +232,20 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym Print exec xfce4-screenshooter
+# Region-select-screenshot to clipboard
+bindsym Print exec grimshot --notify copy area
 
+# Region-select-screenshot to file
+bindsym ctrl+Print exec grimshot --notify save area
+
+# All displays to file
+bindsym ctrl+alt+Print exec grimshot --notify save
+
+# Current window to clipboard
+bindsym alt+Print exec grimshot --notify copy active
+
+# Current window to file
+bindsym Shift+Print exec grimshot --notify save active
 #
 # Status Bar:
 #

@@ -5,7 +5,7 @@ set number relativenumber
 syntax enable
 set background=light
 filetype plugin indent on
-"set clipboard+=unnamedplus
+set clipboard+=unnamedplus
 set noswapfile
 set tabstop=4
 set shiftwidth=4
@@ -32,7 +32,7 @@ vnoremap <a-n> :m '>+1<cr>gv=gv
 vnoremap <a-p> :m '<-2<cr>gv=gv
 
 set cursorline
-set autoindent
+"set autoindent
 set spell
 set is
 set ruler

@@ -30,7 +30,7 @@ return {
 			accept = { auto_brackets = { enabled = false }, },
 			menu = {
 				border = 'single',
-				--auto_show = false,
+				auto_show = true,
 			},
 			documentation = {
 				window = {
@@ -51,7 +51,7 @@ return {
 			cmdline = {}
 		},
 		signature = {
-			enabled = true,
+			enabled = false,
 			window = { border = 'single' },
 		},
 	},
