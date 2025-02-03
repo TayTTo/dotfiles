@@ -47,7 +47,7 @@ return {
 			},
 		},
 		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer' },
+			default = { 'buffer', 'lsp', 'snippets', 'path' },
 			cmdline = {}
 		},
 		signature = {
