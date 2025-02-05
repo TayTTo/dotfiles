@@ -52,3 +52,7 @@ set scrolloff=5
 vim.api.nvim_create_user_command("Ans", function()
 	vim.bo.filetype = "yaml.ansible"
 end, {})
+
+vim.diagnostic.config({
+    virtual_text = true,       -- Ensure virtual text is enabled
+})

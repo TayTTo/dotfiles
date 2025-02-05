@@ -16,9 +16,8 @@ return {
 		-- See the full "keymap" documentation for information on defining your own keymap.
 		keymap = {
 			preset = 'enter',
-			['<Tab>'] = {'select_next', 'snippet_forward', 'fallback' },
-			['<S-Tab>'] = {'select_prev', 'snippet_backward', 'fallback' },
-
+			['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+			['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,
@@ -57,5 +56,18 @@ return {
 			window = { border = 'single' },
 		},
 	},
-	opts_extend = { "sources.default" }
+	opts_extend = { "sources.default" },
+	vim.keymap.set('i', '<Tab>', function()
+		local col = vim.fn.col('.') - 1
+		local line = vim.fn.getline('.')
+
+		-- If there's a non-space character before the cursor, trigger autocomplete
+		if col > 0 and line:sub(col, col):match('%S') then
+			require('blink.cmp').show()
+		else
+			-- Use Neovim's default Tab behavior for indentation
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', true)
+		end
+	end, { expr = false, noremap = true })
+
 }
