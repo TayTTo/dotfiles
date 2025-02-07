@@ -12,6 +12,9 @@
 # Title bar background and text
 # Title bar color
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+
 set $mod Mod1
 # Home row direction keys, like vim
 set $left h
