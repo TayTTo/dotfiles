@@ -6,70 +6,70 @@ return {
 	},
 
 	--Autocompletion
---	{
---		'hrsh7th/nvim-cmp',
---		event = 'InsertEnter',
---		config = function()
---			local cmp = require('cmp')
---			require('luasnip.loaders.from_vscode').lazy_load()
---
---			cmp.setup({
---				sources = {
---					{ name = 'nvim_lsp' },
---					{ name = 'luasnip' },
---					{ name = 'path'},
---				},
---				snippet = {
---					expand = function(args)
---						require('luasnip').lsp_expand(args.body)
---					end,
---				},
---				window = {
---					completion = cmp.config.window.bordered(),
---					documentation = cmp.config.window.bordered(),
---				},
---				completion = {
---					autocomplete = false
---				},
---				mapping = cmp.mapping.preset.insert({
---					['<C-Space>'] = cmp.mapping.complete(),
---					['<C-n>'] = cmp.mapping.select_next_item(),
---					['<C-p>'] = cmp.mapping.select_prev_item(),
---					['<C-u>'] = cmp.mapping.scroll_docs(-4),
---					['<C-d>'] = cmp.mapping.scroll_docs(4),
---					-- Super tab
---					['<Tab>'] = cmp.mapping(function(fallback)
---						local luasnip = require('luasnip')
---						local col = vim.fn.col('.') - 1
---
---						if cmp.visible() then
---							cmp.select_next_item({ behavior = 'select' })
---						elseif luasnip.expand_or_locally_jumpable() then
---							luasnip.expand_or_jump()
---						elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
---							fallback()
---						else
---							cmp.complete()
---						end
---					end, { 'i', 's' }),
---
---					-- Super shift tab
---					['<S-Tab>'] = cmp.mapping(function(fallback)
---						local luasnip = require('luasnip')
---
---						if cmp.visible() then
---							cmp.select_prev_item({ behavior = 'select' })
---						elseif luasnip.locally_jumpable(-1) then
---							luasnip.jump(-1)
---						else
---							fallback()
---						end
---					end, { 'i', 's' }),
---					['<CR>'] = cmp.mapping.confirm({ select = false }),
---				}),
---			})
---		end
---	},
+	--	{
+	--		'hrsh7th/nvim-cmp',
+	--		event = 'InsertEnter',
+	--		config = function()
+	--			local cmp = require('cmp')
+	--			require('luasnip.loaders.from_vscode').lazy_load()
+	--
+	--			cmp.setup({
+	--				sources = {
+	--					{ name = 'nvim_lsp' },
+	--					{ name = 'luasnip' },
+	--					{ name = 'path'},
+	--				},
+	--				snippet = {
+	--					expand = function(args)
+	--						require('luasnip').lsp_expand(args.body)
+	--					end,
+	--				},
+	--				window = {
+	--					completion = cmp.config.window.bordered(),
+	--					documentation = cmp.config.window.bordered(),
+	--				},
+	--				completion = {
+	--					autocomplete = false
+	--				},
+	--				mapping = cmp.mapping.preset.insert({
+	--					['<C-Space>'] = cmp.mapping.complete(),
+	--					['<C-n>'] = cmp.mapping.select_next_item(),
+	--					['<C-p>'] = cmp.mapping.select_prev_item(),
+	--					['<C-u>'] = cmp.mapping.scroll_docs(-4),
+	--					['<C-d>'] = cmp.mapping.scroll_docs(4),
+	--					-- Super tab
+	--					['<Tab>'] = cmp.mapping(function(fallback)
+	--						local luasnip = require('luasnip')
+	--						local col = vim.fn.col('.') - 1
+	--
+	--						if cmp.visible() then
+	--							cmp.select_next_item({ behavior = 'select' })
+	--						elseif luasnip.expand_or_locally_jumpable() then
+	--							luasnip.expand_or_jump()
+	--						elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+	--							fallback()
+	--						else
+	--							cmp.complete()
+	--						end
+	--					end, { 'i', 's' }),
+	--
+	--					-- Super shift tab
+	--					['<S-Tab>'] = cmp.mapping(function(fallback)
+	--						local luasnip = require('luasnip')
+	--
+	--						if cmp.visible() then
+	--							cmp.select_prev_item({ behavior = 'select' })
+	--						elseif luasnip.locally_jumpable(-1) then
+	--							luasnip.jump(-1)
+	--						else
+	--							fallback()
+	--						end
+	--					end, { 'i', 's' }),
+	--					['<CR>'] = cmp.mapping.confirm({ select = false }),
+	--				}),
+	--			})
+	--		end
+	--	},
 
 	-- LSP
 	{
@@ -84,9 +84,26 @@ return {
 		},
 		init = function()
 			-- Reserve a space in the gutter
-			-- This will avoid an annoying layout shift in the screen
-			vim.opt.signcolumn = 'number'
-			--vim.opt.signcolumn = 'no'
+			vim.opt.numberwidth = 3
+			vim.opt.signcolumn = "yes:1"
+			vim.opt.statuscolumn = "%l%s"
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = '',
+						[vim.diagnostic.severity.WARN] = '',
+						[vim.diagnostic.severity.INFO] = '',
+						[vim.diagnostic.severity.HINT] = '',
+					},
+					numhl = {
+						[vim.diagnostic.severity.WARN] = 'WarningMsg',
+						[vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+						[vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+						[vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+
+					},
+				},
+			})
 		end,
 		config = function()
 			local lsp_defaults = require('lspconfig').util.default_config
@@ -95,11 +112,11 @@ return {
 
 			-- Add cmp_nvim_lsp capabilities settings to lspconfig
 			-- This should be executed before you configure any language server
-		--	lsp_defaults.capabilities = vim.tbl_deep_extend(
-		--		'force',
-		--		lsp_defaults.capabilities,
-		--		require('cmp_nvim_lsp').default_capabilities()
-		--	)
+			--	lsp_defaults.capabilities = vim.tbl_deep_extend(
+			--		'force',
+			--		lsp_defaults.capabilities,
+			--		require('cmp_nvim_lsp').default_capabilities()
+			--	)
 
 			-- LspAttach is where you enable features that only work
 			-- if there is a language server active in the file
