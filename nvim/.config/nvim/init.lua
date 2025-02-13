@@ -56,3 +56,8 @@ end, {})
 vim.diagnostic.config({
     virtual_text = true,       -- Ensure virtual text is enabled
 })
+vim.filetype.add({
+  extension = {
+    tf = "terraform"
+  }
+})

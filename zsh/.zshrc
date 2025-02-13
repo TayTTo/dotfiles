@@ -287,3 +287,4 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:~/Downloads/zig
 export PATH=$PATH:/usr/local/go/bin
 
+

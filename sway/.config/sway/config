@@ -96,6 +96,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
        natural_scroll enabled
        middle_emulation enabled
    }
+
+
+
 ### Key bindings
 #
 # Basics:
@@ -239,7 +242,8 @@ bindsym $mod+r mode "resize"
 bindsym Print exec grimshot --notify copy area
 
 # Region-select-screenshot to file
-bindsym ctrl+Print exec grimshot --notify save area
+bindsym ctrl+Print exec bash -c 'grimshot save area "$(zenity --file-selection --save --confirm-overwrite --filename=$HOME/Pictures/screenshot-$(date +%F-%H%M%S).png)"'
+
 
 # All displays to file
 bindsym ctrl+alt+Print exec grimshot --notify save
@@ -248,7 +252,8 @@ bindsym ctrl+alt+Print exec grimshot --notify save
 bindsym alt+Print exec grimshot --notify copy active
 
 # Current window to file
-bindsym Shift+Print exec grimshot --notify save active
+bindsym Shift+Print exec bash -c 'grimshot save active "$(zenity --file-selection --save --confirm-overwrite --filename=$HOME/Pictures/screenshot-$(date +%F-%H%M%S).png)"'
+
 #
 # Status Bar:
 #
@@ -275,3 +280,4 @@ bar {
 #}
 
 include /etc/sway/config.d/*
+

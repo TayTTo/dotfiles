@@ -162,6 +162,18 @@ return {
 					end
 				end,
 			})
+			require 'lspconfig'.yamlls.setup {
+				settings = {
+					yaml = {
+						validate = true,
+						format = { enable = true },
+						schemas = {
+							["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+						}
+					}
+				}
+			}
+
 			require('mason-lspconfig').setup({
 				ensure_installed = {
 					'lua_ls',
