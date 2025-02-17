@@ -18,5 +18,7 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+config.enable_wayland = true
+config.image_dim = 0
 config.max_fps = 240
 return config

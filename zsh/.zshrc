@@ -41,6 +41,7 @@ bindkey '^[[H' beginning-of-line                  # home
 bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
+
 # enable completion features
 autoload -Uz compinit
 compinit -d ~/.cache/zcompdump

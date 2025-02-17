@@ -61,3 +61,4 @@ vim.filetype.add({
     tf = "terraform"
   }
 })
+

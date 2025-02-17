@@ -5,34 +5,27 @@ return {
 		'rafamadriz/friendly-snippets',
 	},
 
+	--version = 'v0.11.0',
 	version = '*',
-
+	
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-		-- 'default' for mappings similar to built-in completion
-		-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-		-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-		-- See the full "keymap" documentation for information on defining your own keymap.
 		keymap = {
 			preset = 'default',
-			--['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-			--['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-			--['<C-y>'] = {'accept'},
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,
 			nerd_font_variant = 'mono'
 		},
-
 		completion = {
-
 			-- Disable auto brackets
 			keyword = { range = 'full' },
 			accept = { auto_brackets = { enabled = false }, },
+
 			menu = {
-				border = 'single',
 				auto_show = true,
+				border = 'single',
 			},
 			documentation = {
 				window = {
@@ -48,9 +41,13 @@ return {
 				},
 			},
 		},
+
 		sources = {
 			default = { 'buffer', 'lsp', 'snippets', 'path' },
-			cmdline = {}
+			--cmdline = {},
+		},
+		cmdline = {
+			enabled = false,
 		},
 		signature = {
 			enabled = false,
@@ -58,17 +55,17 @@ return {
 		},
 	},
 	opts_extend = { "sources.default" },
---	vim.keymap.set('i', '<Tab>', function()
---		local col = vim.fn.col('.') - 1
---		local line = vim.fn.getline('.')
---
---		-- If there's a non-space character before the cursor, trigger autocomplete
---		if col > 0 and line:sub(col, col):match('%S') then
---			require('blink.cmp').show()
---		else
---			-- Use Neovim's default Tab behavior for indentation
---			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', true)
---		end
---	end, { expr = false, noremap = true })
+	--	vim.keymap.set('i', '<Tab>', function()
+	--		local col = vim.fn.col('.') - 1
+	--		local line = vim.fn.getline('.')
+	--
+	--		-- If there's a non-space character before the cursor, trigger autocomplete
+	--		if col > 0 and line:sub(col, col):match('%S') then
+	--			require('blink.cmp').show()
+	--		else
+	--			-- Use Neovim's default Tab behavior for indentation
+	--			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', true)
+	--		end
+	--	end, { expr = false, noremap = true })
 
 }
