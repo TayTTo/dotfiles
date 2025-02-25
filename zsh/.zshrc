@@ -41,6 +41,7 @@ bindkey '^[[H' beginning-of-line                  # home
 bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
+
 # enable completion features
 autoload -Uz compinit
 compinit -d ~/.cache/zcompdump
@@ -287,3 +288,5 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:~/Downloads/zig
 export PATH=$PATH:/usr/local/go/bin
 
+
+alias lzd='lazydocker'

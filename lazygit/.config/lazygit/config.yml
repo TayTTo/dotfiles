@@ -1,0 +1,12 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - "#D8DEE9"
+    
+    cherryPickedCommitBgColor: 
+      - "#D8DEE9"
+
+  authorColors:
+    "TayTTo": 'blue'
+    'taytaoto': 'blue'
+    '*': 'red'

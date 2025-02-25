@@ -21,7 +21,6 @@ return {
 	},
 	config = function()
 		vim.cmd("autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()")
-		require("telescope").load_extension("lazygit")
 		vim.g.lazygit_floating_window_scaling_factor = 1 -- scaling factor for floating window
 	end,
 }

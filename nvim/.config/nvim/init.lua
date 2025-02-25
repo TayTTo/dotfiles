@@ -45,8 +45,6 @@ command! CopyFilePath :let @+ = expand("%:p") "\<cr>"
 command! CopyDirPath :let @+ = expand("%:p:h") "\<cr>"
 command! CopyFileName :let @+ = expand("%:t") "\<cr>"
 nnoremap cpf i#include<iostream><Esc>ousing namespace std;<Esc>o<CR>int main(){<Esc>o<Esc>oreturn 0;<Esc>o}<Esc>kki
-inoremap <c-q> <Esc>:Lex<cr>
-nnoremap <c-q> :Lex<cr>
 set scrolloff=5
 ]])
 vim.api.nvim_create_user_command("Ans", function()
@@ -56,3 +54,9 @@ end, {})
 vim.diagnostic.config({
     virtual_text = true,       -- Ensure virtual text is enabled
 })
+vim.filetype.add({
+  extension = {
+    tf = "terraform"
+  }
+})
+
