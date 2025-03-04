@@ -3,25 +3,15 @@ require("config.lazy")
 vim.cmd([[
 set number relativenumber
 syntax enable
-set background=light
 filetype plugin indent on
 set clipboard+=unnamedplus
-set noswapfile
 set tabstop=4
 set shiftwidth=4
-set termguicolors
-
-"set path+=**
 
 set wildmenu
 set hidden
 set backspace=2
 set noswapfile
-
-" tweaks for browsing
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_keepdir = 0
-let g:netrw_winsize = 20
 
 " setting for moving lines
 nnoremap <a-n> :m .+1<cr>==
@@ -33,12 +23,10 @@ vnoremap <a-p> :m '<-2<cr>gv=gv
 
 set cursorline
 "set autoindent
-set spell
 set is
 set ruler
 set ignorecase
 set smartcase
-set gp=git\ grep\ -n
 set laststatus=2
 packadd! matchit
 command! CopyFilePath :let @+ = expand("%:p") "\<cr>"
@@ -54,9 +42,13 @@ end, {})
 vim.diagnostic.config({
     virtual_text = true,       -- Ensure virtual text is enabled
 })
+
 vim.filetype.add({
   extension = {
     tf = "terraform"
   }
 })
+
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
 

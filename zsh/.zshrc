@@ -257,6 +257,8 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias cl="clear"
+
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -290,3 +292,5 @@ export PATH=$PATH:/usr/local/go/bin
 
 
 alias lzd='lazydocker'
+export FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then export PATH="$FNM_PATH:$PATH"; eval "`fnm env`"; fi

@@ -3,17 +3,18 @@ return {
 	-- optional: provides snippets for the snippet source
 	dependencies = {
 		'rafamadriz/friendly-snippets',
+		'kristijanhusak/vim-dadbod-completion',
 	},
 
-	--version = 'v0.11.0',
-	version = '*',
-	
+	version = 'v0.12.4',
+	--version = '*',
+
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
 		keymap = {
 			preset = 'default',
-			['<C-y>'] = { 'select_and_accept', 'fallback' }, 
+			['<C-y>'] = { 'select_and_accept', 'fallback' },
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,
@@ -46,6 +47,12 @@ return {
 		sources = {
 			default = { 'buffer', 'lsp', 'snippets', 'path' },
 			--cmdline = {},
+			per_filetype = {
+				sql = { 'snippets', 'dadbod', 'buffer' },
+			},
+			providers = {
+				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+			},
 		},
 		cmdline = {
 			enabled = false,
@@ -55,18 +62,5 @@ return {
 			window = { border = 'single' },
 		},
 	},
-	opts_extend = { "sources.default" },
-	--	vim.keymap.set('i', '<Tab>', function()
-	--		local col = vim.fn.col('.') - 1
-	--		local line = vim.fn.getline('.')
-	--
-	--		-- If there's a non-space character before the cursor, trigger autocomplete
-	--		if col > 0 and line:sub(col, col):match('%S') then
-	--			require('blink.cmp').show()
-	--		else
-	--			-- Use Neovim's default Tab behavior for indentation
-	--			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', true)
-	--		end
-	--	end, { expr = false, noremap = true })
-
+	opts_extend = { "sources.default"},
 }

@@ -49,12 +49,7 @@ return {
 		},
 		gitbrowse = {},
 		dashboard = {},
-		--terminal = {
-		--	win = {
-		--		style = "terminal",
-		--		position = "float",
-		--	},
-		--},
+		bigfile = {},
 	},
 	keys = {
 		-- Top Pickers & Explorer
