@@ -13,10 +13,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-zle -N fzf-history-widget
-bindkey '^G' fzf-history-widget
-
+setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
@@ -25,14 +22,13 @@ setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 
-
 WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
 
-
 # configure key keybindings
+bindkey -e                                        # emacs key bindings
 bindkey ' ' magic-space                           # do history expansion on space
 bindkey '^U' backward-kill-line                   # ctrl + U
 bindkey '^[[3;5~' kill-word                       # ctrl + Supr
@@ -109,15 +105,15 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 configure_prompt() {
-    # prompt_symbol=㉿
+    prompt_symbol=㉿
     # Skull emoji for root terminal
     #[ "$EUID" -eq 0 ] && prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
-        # twoline)
-        #     PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
-        #     # Right-side prompt with exit codes and background processes
-        #     #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-        #     ;;
+        twoline)
+            PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
+            # Right-side prompt with exit codes and background processes
+            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+            ;;
         oneline)
             PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%n@%m%b%F{reset}:%B%F{%(#.blue.green)}%~%b%F{reset}%(#.#.$) '
             RPROMPT=
@@ -127,7 +123,7 @@ configure_prompt() {
             RPROMPT=
             ;;
     esac
-    # unset prompt_symbol
+    unset prompt_symbol
 }
 
 # The following block is surrounded by two delimiters.
@@ -194,17 +190,17 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# toggle_oneline_prompt(){
-#     if [ "$PROMPT_ALTERNATIVE" = oneline ]; then
-#         PROMPT_ALTERNATIVE=twoline
-#     else
-#         PROMPT_ALTERNATIVE=oneline
-#     fi
-#     configure_prompt
-#     zle reset-prompt
-# }
-# zle -N toggle_oneline_prompt
-# bindkey ^P toggle_oneline_prompt
+toggle_oneline_prompt(){
+    if [ "$PROMPT_ALTERNATIVE" = oneline ]; then
+        PROMPT_ALTERNATIVE=twoline
+    else
+        PROMPT_ALTERNATIVE=oneline
+    fi
+    configure_prompt
+    zle reset-prompt
+}
+zle -N toggle_oneline_prompt
+bindkey ^P toggle_oneline_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -291,24 +287,9 @@ eval "$(zoxide init zsh)"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:~/Downloads/zig
 export PATH=$PATH:/usr/local/go/bin
 
+
 alias lzd='lazydocker'
-alias fd='fdfind'
-alias cd='z'
-alias vi='nvim'
-
-export GCC_PATH="$HOME/Downloads/devTool/gcc/build/bin"
-export PATH="$GCC_PATH:$PATH"
-
-export CLANG_PATH="$HOME/Downloads/devTool/llvm/build/bin"
-export PATH="$CLANG_PATH:$PATH"
-
-export PATH="$PATH:$(go env GOPATH)/bin"
-
-export GCC_LIB_PATH="$HOME/Downloads/devTool/gcc/build/lib"
-export GCC_LIB64_PATH="$HOME/Downloads/devTool/gcc/build/lib64"
-export LD_LIBRARY_PATH="$GCC_LIB_PATH:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH="$GCC_LIB64_PATH:$LD_LIBRARY_PATH"
-source <(kubectl completion zsh)
-source <(docker completion zsh)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

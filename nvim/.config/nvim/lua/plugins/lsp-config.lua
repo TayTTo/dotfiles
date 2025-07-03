@@ -1,10 +1,11 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		lazy = false,
+		lazy = true,
+		cmd = {"Mason"},
 		opts = {},
 		dependencies = {
-			{ "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true},
+			{ "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true },
 
 		},
 		config = function()
@@ -23,78 +24,12 @@ return {
 					"black", -- python formatter
 					"pylint", -- python linter
 					"eslint_d", -- js linter
+					"biome",
 				},
 			})
 		end,
 	},
 
-	--Autocompletion
-	--	{
-	--		'hrsh7th/nvim-cmp',
-	--		event = 'InsertEnter',
-	--		config = function()
-	--			local cmp = require('cmp')
-	--			require('luasnip.loaders.from_vscode').lazy_load()
-	--
-	--			cmp.setup({
-	--				sources = {
-	--					{ name = 'nvim_lsp' },
-	--					{ name = 'luasnip' },
-	--					{ name = 'path'},
-	--				},
-	--				snippet = {
-	--					expand = function(args)
-	--						require('luasnip').lsp_expand(args.body)
-	--					end,
-	--				},
-	--				window = {
-	--					completion = cmp.config.window.bordered(),
-	--					documentation = cmp.config.window.bordered(),
-	--				},
-	--				completion = {
-	--					autocomplete = false
-	--				},
-	--				mapping = cmp.mapping.preset.insert({
-	--					['<C-Space>'] = cmp.mapping.complete(),
-	--					['<C-n>'] = cmp.mapping.select_next_item(),
-	--					['<C-p>'] = cmp.mapping.select_prev_item(),
-	--					['<C-u>'] = cmp.mapping.scroll_docs(-4),
-	--					['<C-d>'] = cmp.mapping.scroll_docs(4),
-	--					-- Super tab
-	--					['<Tab>'] = cmp.mapping(function(fallback)
-	--						local luasnip = require('luasnip')
-	--						local col = vim.fn.col('.') - 1
-	--
-	--						if cmp.visible() then
-	--							cmp.select_next_item({ behavior = 'select' })
-	--						elseif luasnip.expand_or_locally_jumpable() then
-	--							luasnip.expand_or_jump()
-	--						elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-	--							fallback()
-	--						else
-	--							cmp.complete()
-	--						end
-	--					end, { 'i', 's' }),
-	--
-	--					-- Super shift tab
-	--					['<S-Tab>'] = cmp.mapping(function(fallback)
-	--						local luasnip = require('luasnip')
-	--
-	--						if cmp.visible() then
-	--							cmp.select_prev_item({ behavior = 'select' })
-	--						elseif luasnip.locally_jumpable(-1) then
-	--							luasnip.jump(-1)
-	--						else
-	--							fallback()
-	--						end
-	--					end, { 'i', 's' }),
-	--					['<CR>'] = cmp.mapping.confirm({ select = false }),
-	--				}),
-	--			})
-	--		end
-	--	},
-
-	-- LSP
 	{
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo", "LspInstall", "LspStart" },
@@ -179,22 +114,11 @@ return {
 					end
 
 					-- make sure there is at least one client with formatting capabilities
-					if client.supports_method("textDocument/formatting") then
+					if client:supports_method("textDocument/formatting") then
 						buffer_autoformat(event.buf)
 					end
 				end,
 			})
-			--require("lspconfig").yamlls.setup({
-			--	settings = {
-			--		yaml = {
-			--			validate = true,
-			--			format = { enable = true },
-			--			schemas = {
-			--				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-			--			},
-			--		},
-			--	},
-			--})
 
 			require('lspconfig').jdtls.setup({})
 			require("mason-lspconfig").setup({
@@ -210,15 +134,12 @@ return {
 					"tflint",
 					"tailwindcss",
 					"cssls",
-					"ts_ls",
-					"eslint@4.5.0",
+					-- "eslint@4.5.0",
 					"emmet_language_server",
 					"html",
 					"vtsls",
 				},
 				handlers = {
-					-- this first function is the "default handler"
-					-- it applies to every language server without a "custom handler"
 					function(server_name)
 						require("lspconfig")[server_name].setup({})
 					end,

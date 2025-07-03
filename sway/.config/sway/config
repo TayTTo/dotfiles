@@ -22,6 +22,7 @@ set $down j
 set $up k
 set $right l
 
+workspace_layout tabbed
 
 font pango:JetBrainsMono Nerd Font 10
 

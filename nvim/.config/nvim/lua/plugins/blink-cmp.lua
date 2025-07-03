@@ -2,19 +2,24 @@ return {
 	'saghen/blink.cmp',
 	-- optional: provides snippets for the snippet source
 	dependencies = {
-		'rafamadriz/friendly-snippets',
+		'L3MON4D3/LuaSnip',
 		'kristijanhusak/vim-dadbod-completion',
 	},
 
-	version = 'v0.12.4',
-	--version = '*',
+	-- version = 'v0.12.4',
+	version = '*',
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
+		snippets = { preset = 'luasnip' },
 		keymap = {
 			preset = 'default',
 			['<C-y>'] = { 'select_and_accept', 'fallback' },
+			['<C-p>'] = { 'select_prev', 'fallback' },
+			['<C-n>'] = { 'select_next', 'fallback' },
+			-- ['<C-j>'] = { 'snippet_forward', 'fallback' },
+			-- ['<C-k>'] = { 'snippet_backward', 'fallback' },
 		},
 		appearance = {
 			use_nvim_cmp_as_default = true,
@@ -43,7 +48,6 @@ return {
 				},
 			},
 		},
-
 		sources = {
 			default = { 'buffer', 'lsp', 'snippets', 'path' },
 			--cmdline = {},
@@ -60,9 +64,10 @@ return {
 			enabled = false,
 		},
 		signature = {
-			enabled = false,
+			enabled = true,
 			window = { border = 'single' },
 		},
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
-	opts_extend = { "sources.default"},
+	opts_extend = { "sources.default" },
 }

@@ -3,14 +3,14 @@ return {
 	build = ":TSUpdate",
 	config = function()
 		local configs = require("nvim-treesitter.configs")
-		--vim.wo.foldmethod = 'expr'
-		--vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-		--vim.wo.foldenable = false
-		--vim.wo.foldcolumn = '0'
-		--vim.wo.foldtext = ""
-		--vim.wo.foldlevel = 99
-		--vim.opt.foldlevelstart = 1
-		--vim.wo.foldnestmax = 4
+		vim.wo.foldmethod = 'expr'
+		vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		vim.wo.foldenable = false
+		vim.wo.foldcolumn = '0'
+		vim.wo.foldtext = ""
+		vim.wo.foldlevel = 99
+		vim.opt.foldlevelstart = 1
+		vim.wo.foldnestmax = 4
 
 		configs.setup({
 			ensure_installed = {
@@ -43,7 +43,7 @@ return {
 			},
 			indent = {
 				enable = true,
-				disable = { "terraform" },
+				disable = { "terraform", "typescript" },
 			},
 		})
 	end
