@@ -8,7 +8,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     //"modules-center": ["sway/window"],
     //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "date", "clock", "tray"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
