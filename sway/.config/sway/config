@@ -27,6 +27,9 @@ workspace_layout tabbed
 font pango:JetBrainsMono Nerd Font 10
 
 #exec --no-startup-id lxappearance --no-windows
+exec_always {
+    export ELECTRON_OZONE_PLATFORM_HINT=x11
+}
 exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
 exec --no-startup-id protonvpn-app
 #exec --no-startup-id dbus-launch

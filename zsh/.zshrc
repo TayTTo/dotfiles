@@ -312,3 +312,7 @@ export LD_LIBRARY_PATH="$GCC_LIB_PATH:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$GCC_LIB64_PATH:$LD_LIBRARY_PATH"
 source <(kubectl completion zsh)
 source <(docker completion zsh)
+export PATH="/home/tayto/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/tayto/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+export PAGER=less
