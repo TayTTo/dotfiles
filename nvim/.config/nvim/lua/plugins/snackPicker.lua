@@ -45,16 +45,26 @@ return {
 		image = {
 			enabled = true,
 			doc = {
-				inline = true,
-				float = true,
-				max_width = 60,
-				max_height = 30,
+				inline = false,
+				float = false,
+				max_width = 40,
+				max_height = 20,
 			}
 		},
 		gitbrowse = {},
 		dashboard = {},
 		bigfile = {},
 	},
+	vim.schedule(function()
+		local image_doc = require 'snacks.image.doc'
+		local attach = image_doc.attach
+		image_doc.attach = function(buf) ---@diagnostic disable-line
+			if vim.bo[buf].ft:match 'react' then
+				return
+			end
+			attach(buf)
+		end
+	end),
 	keys = {
 		-- Top Pickers & Explorer
 		{ "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
