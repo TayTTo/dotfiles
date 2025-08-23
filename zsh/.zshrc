@@ -276,7 +276,7 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-export PATH="$PATH:/opt/nvim/nvim"
+export PATH="$PATH:/opt/nvim"
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
