@@ -320,3 +320,4 @@ export PATH="/home/tayto/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/tayto/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 export PAGER=less
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/snapd/desktop
