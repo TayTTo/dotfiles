@@ -276,7 +276,7 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/opt/nvim/nvim"
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
@@ -308,6 +308,10 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 export GCC_LIB_PATH="$HOME/Downloads/devTool/gcc/build/lib"
 export GCC_LIB64_PATH="$HOME/Downloads/devTool/gcc/build/lib64"
+
+export ZIG_PATH="$HOME/Downloads/devTool/zig/"
+export PATH="$ZIG_PATH:$PATH"
+
 export LD_LIBRARY_PATH="$GCC_LIB_PATH:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$GCC_LIB64_PATH:$LD_LIBRARY_PATH"
 source <(kubectl completion zsh)

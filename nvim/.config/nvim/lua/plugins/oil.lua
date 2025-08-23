@@ -8,6 +8,15 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 	vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" }),
 	config = function()
+		require("nvim-web-devicons").setup {
+			override_by_extension = {
+				["css"] = {
+					icon = "", -- or any working glyph
+					color = "#264de4",
+					name = "Css"
+				}
+			},
+		}
 		require("oil").setup({
 			-- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
 			-- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
