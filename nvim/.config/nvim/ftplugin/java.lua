@@ -1,7 +1,8 @@
 local function get_jdtls()
 	-- Get the Mason Registry to gain access to downloaded binaries
 	-- local jdtls_path = "/home/tayto/.local/share/nvim/mason/bin/jdtls"
-	local jdtls_path = vim.fn.expand "$MASON/bin/jdtls"
+	-- local jdtls_path = vim.fn.expand "$MASON/bin/jdtls"
+	local jdtls_path = vim.fn.exepath("jdtls") 
 	-- Obtain the path to the jar which runs the language server
 	local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 	-- Declare white operating system we are using, windows use win, macos use mac
@@ -270,12 +271,13 @@ local function setup_jdtls()
 		settings = settings,
 		capabilities = capabilities,
 		init_options = init_options,
-		on_attach = on_attach
+		on_attach = on_attach,
 	}
 
 	-- Start the JDTLS server
 	require('jdtls').start_or_attach(config)
 end
+
 
 return {
 	setup_jdtls = setup_jdtls,

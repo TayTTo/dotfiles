@@ -34,6 +34,18 @@ command! CopyDirPath :let @+ = expand("%:p:h") "\<cr>"
 command! CopyFileName :let @+ = expand("%:t") "\<cr>"
 nnoremap cpf i#include<iostream><Esc>ousing namespace std;<Esc>o<CR>int main(){<Esc>o<Esc>oreturn 0;<Esc>o}<Esc>kki
 set scrolloff=5
+nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
+nnoremap crv <Cmd>lua require('jdtls').extract_variable()<CR>
+vnoremap crv <Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>
+nnoremap crc <Cmd>lua require('jdtls').extract_constant()<CR>
+vnoremap crc <Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>
+vnoremap crm <Esc><Cmd>lua require('jdtls').extract_method(true)<CR>
+
+
+" If using nvim-dap
+" This requires java-debug and vscode-java-test bundles, see install steps in this README further below.
+nnoremap <leader>df <Cmd>lua require'jdtls'.test_class()<CR>
+nnoremap <leader>dn <Cmd>lua require'jdtls'.test_nearest_method()<CR>
 ]])
 vim.api.nvim_create_user_command("Ans", function()
 	vim.bo.filetype = "yaml.ansible"
@@ -41,6 +53,7 @@ end, {})
 
 vim.diagnostic.config({
     virtual_text = true,       -- Ensure virtual text is enabled
+	-- update_in_insert = false,
 })
 
 vim.filetype.add({
