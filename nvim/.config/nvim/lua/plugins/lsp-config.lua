@@ -2,7 +2,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		lazy = true,
-		cmd = {"Mason"},
+		cmd = { "Mason" },
 		opts = {},
 		dependencies = {
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true },
@@ -42,6 +42,7 @@ return {
 		},
 		init = function()
 			-- Reserve a space in the gutter
+			vim.diagnostic.setqflist = function() end
 			vim.opt.numberwidth = 2
 			vim.opt.signcolumn = "yes:1"
 			vim.opt.statuscolumn = "%l%s"
@@ -59,13 +60,15 @@ return {
 						[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
 						[vim.diagnostic.severity.HINT] = "DiagnosticHint",
 					},
+					show_in_quickfix = false,
 				},
 			})
 		end,
 		config = function()
 			local lsp_defaults = require("lspconfig").util.default_config
 			local capabilities = require("blink-cmp").get_lsp_capabilities()
-			require("lspconfig").lua_ls.setup({ capabilities = capabilities })
+			-- require("lspconfig").lua_ls.setup({ capabilities = capabilities })
+			vim.lsp.config('lua_ls', { capabilities = capabilities })
 
 			-- Add cmp_nvim_lsp capabilities settings to lspconfig
 			-- This should be executed before you configure any language server
@@ -120,7 +123,17 @@ return {
 				end,
 			})
 
-			require('lspconfig').jdtls.setup({})
+			-- require('lspconfig').jdtls.setup({})
+			-- vim.lsp.config('jdtls', {
+			-- 	settings = {
+			-- 		java = {
+			--
+			-- 		},
+			-- 	},
+			-- })
+			-- vim.lsp.enable('jdtls')
+
+
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
@@ -141,7 +154,10 @@ return {
 				},
 				handlers = {
 					function(server_name)
-						require("lspconfig")[server_name].setup({})
+						-- require("lspconfig")[server_name].setup({})
+						vim.lsp.config(server_name, {
+							[server_name] = {}
+						})
 					end,
 				},
 			})
