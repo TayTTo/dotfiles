@@ -137,7 +137,6 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					"ansiblels",
 					"clangd",
 					"gopls",
 					"jsonls",
