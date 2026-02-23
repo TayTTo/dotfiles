@@ -16,17 +16,17 @@ return {
 			-- enable mason and configure icons
 			mason.setup({})
 
-			mason_tool_installer.setup({
-				ensure_installed = {
-					"prettier", -- prettier formatter
-					"stylua", -- lua formatter
-					"isort", -- python formatter
-					"black", -- python formatter
-					"pylint", -- python linter
-					"eslint_d", -- js linter
-					"biome",
-				},
-			})
+			-- mason_tool_installer.setup({
+			-- 	ensure_installed = {
+			-- 		"prettier", -- prettier formatter
+			-- 		"stylua", -- lua formatter
+			-- 		"isort", -- python formatter
+			-- 		"black", -- python formatter
+			-- 		"pylint", -- python linter
+			-- 		"eslint_d", -- js linter
+			-- 		"biome",
+			-- 	},
+			-- })
 		end,
 	},
 
@@ -136,21 +136,20 @@ return {
 
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"lua_ls",
-					"ansiblels",
-					"clangd",
-					"gopls",
-					"jsonls",
-					"marksman",
-					"pylsp",
-					"terraformls",
-					"tflint",
-					"tailwindcss",
-					"cssls",
-					-- "eslint@4.5.0",
-					"emmet_language_server",
-					"html",
-					"vtsls",
+					-- "lua_ls",
+					-- "clangd",
+					-- "gopls",
+					-- "jsonls",
+					-- "marksman",
+					-- "pylsp",
+					-- "terraformls",
+					-- "tflint",
+					-- "tailwindcss",
+					-- "cssls",
+					-- -- "eslint@4.5.0",
+					-- "emmet_language_server",
+					-- "html",
+					-- "vtsls",
 				},
 				handlers = {
 					function(server_name)

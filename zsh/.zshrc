@@ -314,8 +314,17 @@ export PATH="$ZIG_PATH:$PATH"
 
 export LD_LIBRARY_PATH="$GCC_LIB_PATH:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$GCC_LIB64_PATH:$LD_LIBRARY_PATH"
-source <(kubectl completion zsh)
-source <(docker completion zsh)
+
+# Enable kubectl completion if available
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
+
+# Enable docker completion if available
+if command -v docker >/dev/null 2>&1; then
+  source <(docker completion zsh)
+fi
+
 export PATH="/home/tayto/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/tayto/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
