@@ -51,8 +51,6 @@ return {
 				max_height = 20,
 			}
 		},
-		gitbrowse = {},
-		dashboard = {},
 		bigfile = {},
 	},
 	vim.schedule(function()
@@ -68,7 +66,6 @@ return {
 	keys = {
 		-- Top Pickers & Explorer
 		{ "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
-		{ "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
 		{ "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
 		-- find
 		{ "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
@@ -95,7 +92,6 @@ return {
 		--other
 		{ "<leader>bd",      function() Snacks.bufdelete() end,                                      desc = "Delete Buffer" },
 		{ "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse",               mode = { "n", "v" } },
-		{ "<c-/>",           function() Snacks.terminal() end,                                       desc = "Toggle Terminal" },
 		{ "<leader>sd",      function() Snacks.picker.diagnostics() end,                             desc = "Diagnostics" },
 		{ "<leader>sD",      function() Snacks.picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
 	},
