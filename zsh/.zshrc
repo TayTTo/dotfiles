@@ -330,3 +330,10 @@ export PHP_INI_SCAN_DIR="/home/tayto/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 export PAGER=less
 export XDG_DATA_DIRS="/usr/share:/usr/local/share:$XDG_DATA_DIRS:/var/lib/snapd/desktop"
+
+# fnm
+FNM_PATH="/home/tayto/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
