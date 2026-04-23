@@ -28,6 +28,8 @@ set ruler
 set ignorecase
 set smartcase
 set laststatus=2
+set foldmethod=indent
+set foldlevelstart=99
 packadd! matchit
 command! CopyFilePath :let @+ = expand("%:p") "\<cr>"
 command! CopyDirPath :let @+ = expand("%:p:h") "\<cr>"
